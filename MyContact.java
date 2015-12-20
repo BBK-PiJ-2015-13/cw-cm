@@ -4,12 +4,12 @@ public class MyContact implements Contact {
 	
 	private String name = null;
 	
-	private String note = null;
+	private String notes = "";
 	
-	public MyContact(int id, String name, String note) {
+	public MyContact(int id, String name, String notes) {
 		this.id = id;
 		this.name = name;
-		this.note = note;
+		this.notes = notes;
 	}
 	
 	public MyContact(int id, String name) {
@@ -18,17 +18,19 @@ public class MyContact implements Contact {
 	}
 
 	public int getId() {
-		return 0;
+		return this.id;
 	}
 	
 	public String getName(){
-		return null;
+		return this.name;
 	}
 	
 	public String getNotes(){
-		return null;
+		return this.notes;
 	}
 	
-	public void addNotes(String note){}
+	public void addNotes(String note){
+		this.notes = note;
+	}
 
 }
