@@ -27,12 +27,10 @@ public class PastMeetingImpl implements PastMeeting {
 	}
 	
 	public Calendar getDate() {
-		Calendar date = new GregorianCalendar();
 		return this.date;
 	}
 	
 	public Set<Contact> getContacts() {
-		Set<Contact> someContacts = new TreeSet<Contact>();
 		return this.someContacts;
 	}
 

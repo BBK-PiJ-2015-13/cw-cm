@@ -9,10 +9,14 @@ public class ContactTest {
 	private String note1 = "discussing the X project.";
 	private Contact myContact;
 	private Contact nonotes;
+	private Contact nullname;
+	private Contact nullnotes;
+	private Contact negid;
 	@Before
 	public void buildUp() {
-		myContact = new MyContact(id, name, note1);
-		nonotes = new MyContact(id2, name2);
+		myContact = new ContactImpl(id, name, note1);
+		nonotes = new ContactImpl(id2, name2);
+		//nullname = new MyContact(3, null, "hello");
 	}
 	@Test
 	public void testsGetId() {
@@ -29,8 +33,8 @@ public class ContactTest {
 	@Test
 	public void testsGetNotes() {
 		String output = myContact.getNotes();
-		String doit = note1;
-		assertEquals(output, doit);
+		String expected = note1;
+		assertEquals(output, expected);
 	}
 	@Test
 	public void testsGetnonotes() {
@@ -41,9 +45,23 @@ public class ContactTest {
 	@Test
 	public void testsAddnotes() {
 		nonotes.addNotes("testing addnotes.");
-		String input = "testing addnotes.";
-		String expected = nonotes.getNotes();
-		assertEquals(input, expected);
+		String expected = "testing addnotes.";
+		String output = nonotes.getNotes();
+		assertEquals(output, expected);
+	}
+	@Test
+	public void testAddnewnotes() {
+		myContact.addNotes(" Also discussing the Z project.");
+		String expected = "discussing the X project. Also discussing the Z project.";
+		String output = myContact.getNotes();
+		assertEquals(output, expected);
+	}
+	@Test(expected= NullPointerException.class)
+	public void testExceptions() {
+		nullname = new MyContact(3, null, "hello");
+		//String output = myContact.getName();
+		//String expected = NullPointerException;
+		//assertEquals(output, expected);
 	}
 	@After
 	public void cleanUp() {
