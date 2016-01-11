@@ -146,6 +146,7 @@ public class ContactManagerImpl implements ContactManager {
 		try {
 			out = new PrintWriter(file);
 			out.write(currentContactManager);
+			out.flush();
 		} catch (FileNotFoundException ex) { 
 			System.out.println("Cannot write to file " + file + ".");
 		} finally {
