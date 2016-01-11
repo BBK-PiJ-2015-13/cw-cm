@@ -8,21 +8,21 @@ import java.util.Iterator;
 import java.io.*;
 
 public class ContactManagerImpl implements ContactManager {
-	
+	//int counter for objects of FutureMeeting. Corresponds to id value in myFutureMeetingList. Incremented by calling addFutureMeeting and decremented by calling addMeetingNotes.
 	private int countfuture = -1;
-	
+	//int counter for objects of PastMeeting. Corresponds to id value in myPastMeetingList. Incremented by calling addNewPastMeeting and addMeetingNotes.
 	private int countpast = -1;
-	
+	//int counter for Contact objects. Corresponds to length of myContactList. Incremented by calling addNewContact.
 	private int contactcount = -1;
-	
+	//Lists FutureMeeting objects for use in addFutureMeeting, getFutureMeeting, getFutureMeetingList and getMeetingListOn methods.
 	private List<FutureMeeting> myFutureMeetingList = new LinkedList<FutureMeeting>();
-	
+	//Lists Meeting objects.
 	private List<Meeting> myMeetingList = new LinkedList<Meeting>();
-	
+	//Lists PastMeeting objects for use in addNewPastMeeting, addMeetingNotes, getPastMeeting and getPastMeetingListFor.
 	private List<PastMeeting> myPastMeetingList = new LinkedList<PastMeeting>();
-	
-	private Set<Contact> myContactSet = new TreeSet<Contact>();
-	
+	//
+	//private Set<Contact> myContactSet = new TreeSet<Contact>();
+	//Lists Contact objects for use in addNewContact and getContacts methods.
 	private List<Contact> myContactList = new LinkedList<Contact>();
 
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
@@ -147,9 +147,9 @@ public class ContactManagerImpl implements ContactManager {
 			out = new PrintWriter(file);
 			out.write(currentContactManager);
 		} catch (FileNotFoundException ex) { 
-		System.out.println("Cannot write to file " + file + ".");
+			System.out.println("Cannot write to file " + file + ".");
 		} finally {
-		out.close();
+			out.close();
 		}
 	}
 
