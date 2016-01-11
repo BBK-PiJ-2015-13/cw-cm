@@ -45,14 +45,15 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		//for (int i = 0; i < countfuture; i++) {
-			//Meeting myMeeting = myFutureMeetingList.get(i);
-			//Set<Contact> myContactSet = myMeeting.getContacts();
-			//Contact myContact 
-			//if (myMeeti)
-		//}
-		List<Meeting> myList = new LinkedList<Meeting>();
-		return myList;
+		List<Meeting> returnMeeting = new LinkedList<Meeting>();
+		for (int i = 0; i < countfuture; i++) {
+			Meeting myMeeting = myFutureMeetingList.get(i);
+			Set<Contact> myContactSet = myMeeting.getContacts();
+			if (myContactSet.contains(contact)) {
+				returnMeeting.add(myMeeting);
+			}
+		}
+		return returnMeeting;
 	}
 
 	public List<Meeting> getMeetingListOn(Calendar date) {
@@ -75,9 +76,15 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public List<PastMeeting> getPastMeetingListFor(Contact contact) {
-		//PastMeeting myMeeting = new PastMeeting();
-		List<PastMeeting> myList = new LinkedList<PastMeeting>();
-		return myList;
+		List<PastMeeting> returnMeeting = new LinkedList<PastMeeting>();
+		for (int i = 0; i < countpast; i++) {
+			PastMeeting myMeeting = myPastMeetingList.get(i);
+			Set<Contact> myContactSet = myMeeting.getContacts();
+			if (myContactSet.contains(contact)) {
+				returnMeeting.add(myMeeting);
+			}
+		}
+		return returnMeeting;
 	}
 
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
@@ -94,6 +101,7 @@ public class ContactManagerImpl implements ContactManager {
 		countpast++;
 		PastMeeting myPM = new PastMeetingImpl(countpast, mfDate, mfContact, text);
 		myPastMeetingList.add(myPM);
+		countfuture--;
 		myFutureMeetingList.remove(id);
 		return myPM;
 	}
